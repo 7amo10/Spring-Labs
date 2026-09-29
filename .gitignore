@@ -1,0 +1,48 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-userId
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/nbactions.xml
+/nb-configuration.xml
+
+### Logs & Temp ###
+*.log
+*.tmp
+*.class
+*.jar
+*.war
+*.ear
+
+### OS specific ###
+.DS_Store
+Thumbs.db
+
+### LaTeX Artifacts ###
+*.aux
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.tex
+*.pdf
