@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Registration Confirmed</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Registration Confirmed</h1>
+        <p>Employee record successfully verified and persisted to directory</p>
+    </div>
+
+    <div class="form-body">
+        <span class="confirmation-badge">&#10003; Form Validation Succeeded</span>
+
+        <table class="summary-table">
+            <tr>
+                <th>Full Name</th>
+                <td><strong th:text="${(employee.firstName != null ? employee.firstName + ' ' : '') + employee.lastName}"></strong></td>
+            </tr>
+            <tr>
+                <th>Corporate Email</th>
+                <td><span th:text="${employee.corporateEmail}"></span></td>
+            </tr>
+            <tr>
+                <th>Office Postal Code</th>
+                <td><span th:text="${employee.postalCode != null ? employee.postalCode : 'N/A'}"></span></td>
+            </tr>
+            <tr>
+                <th>Annual Base Salary</th>
+                <td>$<span th:text="${#numbers.formatDecimal(employee.salary, 1, 'COMMA', 2, 'POINT')}"></span></td>
+            </tr>
+            <tr>
+                <th>Department</th>
+                <td><span th:text="${employee.department != null and !employee.department.isEmpty() ? employee.department : 'Unassigned'}"></span></td>
+            </tr>
+            <tr>
+                <th>Employment Classification</th>
+                <td><span th:text="${employee.employmentType != null ? employee.employmentType : 'Not Specified'}"></span></td>
+            </tr>
+            <tr>
+                <th>Enrolled Benefits</th>
+                <td>
+                    <ul class="benefits-list" th:if="${employee.selectedBenefits != null and !employee.selectedBenefits.isEmpty()}">
+                        <li th:each="benefit : ${employee.selectedBenefits}" th:text="${benefit}"></li>
+                    </ul>
+                    <span th:if="${employee.selectedBenefits == null or employee.selectedBenefits.isEmpty()}">No optional benefits selected</span>
+                </td>
+            </tr>
+        </table>
+
+        <a class="btn-secondary" th:href="@{/register}">Register Another Employee</a>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corporate Employee Onboarding Portal</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Corporate Onboarding Portal</h1>
+        <p>Enterprise Employee Registration &amp; Benefit Enrollment</p>
+    </div>
+
+    <div class="form-body">
+        <form th:action="@{/registration/processForm}" th:object="${employee}" method="POST">
+
+            <!-- Section 1: Personal Identification -->
+            <div class="section-title">1. Personal Identification</div>
+
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" th:field="*{firstName}" placeholder="e.g., Alexandra" />
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Last Name <span class="required-star">*</span></label>
+                <input type="text" id="lastName" th:field="*{lastName}" placeholder="e.g., Vance" />
+                <span class="error-feedback" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+            </div>
+
+            <!-- Section 2: Corporate Verification -->
+            <div class="section-title">2. Corporate Credentials &amp; Compensation</div>
+
+            <div class="form-group">
+                <label for="corporateEmail">Corporate Email Address <span class="required-star">*</span></label>
+                <input type="text" id="corporateEmail" th:field="*{corporateEmail}" placeholder="e.g., alexandra.vance@company.org" />
+                <span class="error-feedback" th:if="${#fields.hasErrors('corporateEmail')}" th:errors="*{corporateEmail}"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="postalCode">Office Postal Code (5 alphanumeric)</label>
+                <input type="text" id="postalCode" th:field="*{postalCode}" placeholder="e.g., 94016" />
+                <span class="error-feedback" th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="salary">Annual Base Salary (USD) <span class="required-star">*</span></label>
+                <input type="text" id="salary" th:field="*{salary}" placeholder="e.g., 85000 (Range: 30,000 - 250,000)" />
+                <span class="error-feedback" th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}"></span>
+            </div>
+
+            <!-- Section 3: Department & Employment Details -->
+            <div class="section-title">3. Department &amp; Employment Classification</div>
+
+            <div class="form-group">
+                <label for="department">Assigned Department</label>
+                <select id="department" th:field="*{department}">
+                    <option value="">-- Select Department --</option>
+                    <option th:each="dept : ${departments}"
+                            th:value="${dept}"
+                            th:text="${dept}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Employment Classification</label>
+                <div class="radio-group">
+                    <label class="choice-label" th:each="cType : ${employmentTypes}">
+                        <input type="radio" th:field="*{employmentType}" th:value="${cType}" />
+                        <span th:text="${cType}"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Section 4: Benefits Enrollment -->
+            <div class="section-title">4. Benefits &amp; Perks Package</div>
+
+            <div class="form-group">
+                <label>Elective Corporate Benefits</label>
+                <div class="checkbox-group">
+                    <label class="choice-label" th:each="benefit : ${benefits}">
+                        <input type="checkbox" th:field="*{selectedBenefits}" th:value="${benefit}" />
+                        <span th:text="${benefit}"></span>
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit">Complete Employee Registration</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
