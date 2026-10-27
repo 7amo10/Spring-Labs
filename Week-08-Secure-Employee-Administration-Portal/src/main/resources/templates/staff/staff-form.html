@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save Staff Record</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8fafc;
+            padding-top: 50px;
+        }
+        .form-card {
+            max-width: 640px;
+            margin: 0 auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+        }
+        .form-header {
+            background: linear-gradient(135deg, #184c78, #2b542c);
+            color: #ffffff;
+            padding: 20px 28px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-card">
+    <div class="form-header">
+        <h4 class="mb-0 fw-bold" th:text="${employee.id != null ? 'Edit Staff Member' : 'Register New Staff Member'}"></h4>
+        <small class="text-white-50">Enterprise Employee Directory Management</small>
+    </div>
+
+    <div class="p-4">
+        <form th:action="@{/staff/save}" th:object="${employee}" method="POST">
+
+            <!-- Hidden Primary Key to differentiate INSERT vs UPDATE in merge -->
+            <input type="hidden" th:field="*{id}" />
+
+            <div class="mb-3">
+                <label for="firstName" class="form-label fw-semibold">First Name</label>
+                <input type="text" id="firstName" th:field="*{firstName}" class="form-control" placeholder="e.g., Alexandra" required />
+            </div>
+
+            <div class="mb-3">
+                <label for="lastName" class="form-label fw-semibold">Last Name</label>
+                <input type="text" id="lastName" th:field="*{lastName}" class="form-control" placeholder="e.g., Vance" required />
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label fw-semibold">Corporate Email Address</label>
+                <input type="email" id="email" th:field="*{email}" class="form-control" placeholder="e.g., alexandra.vance@company.org" required />
+            </div>
+
+            <div class="mb-4">
+                <label for="department" class="form-label fw-semibold">Assigned Department</label>
+                <input type="text" id="department" th:field="*{department}" class="form-control" placeholder="e.g., Cloud Architecture" required />
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+                <a th:href="@{/staff/list}" class="btn btn-outline-secondary px-4 fw-semibold">Cancel</a>
+                <button type="submit" class="btn btn-primary px-4 fw-semibold" style="background-color: #184c78; border-color: #184c78;">
+                    Save Staff Record
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
