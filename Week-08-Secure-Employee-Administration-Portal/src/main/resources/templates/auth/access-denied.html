@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>403 Access Denied</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8fafc;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .error-card {
+            max-width: 520px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            border: 1px solid #fed7aa;
+            background: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="error-card p-4 text-center">
+    <div class="text-danger mb-3">
+        <h1 class="display-4 fw-bold">403</h1>
+        <h4 class="fw-semibold text-dark">Access Denied &mdash; Forbidden</h4>
+    </div>
+
+    <p class="text-muted">
+        You do not possess the required security privileges to access this administrative resource.
+    </p>
+
+    <div class="bg-light border rounded p-3 text-start mb-4">
+        <div><strong>Authenticated User:</strong> <span sec:authentication="name" class="badge bg-secondary"></span></div>
+        <div class="mt-2"><strong>Assigned Authorities:</strong> <span sec:authentication="principal.authorities" class="badge bg-dark"></span></div>
+    </div>
+
+    <a th:href="@{/staff/list}" class="btn btn-primary px-4 fw-semibold" style="background-color: #184c78; border-color: #184c78;">
+        Return to Staff Directory
+    </a>
+</div>
+
+</body>
+</html>
