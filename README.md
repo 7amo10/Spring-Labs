@@ -14,6 +14,7 @@ Repository containing practical implementation labs, enterprise architecture exp
 * **Week-08-FullStack-MVC-CRUD-Auth**: Full-stack MVC CRUD applications, Post-Redirect-Get (PRG) patterns, form-based authentication, CSRF protection, and role-based UI conditional rendering.
 * **Week-09-Advanced-JPA-Mappings**: Complex relational topologies (1:1, 1:N unidirectional/bidirectional, M:N), cascading lifecycle operations, and query optimization eliminating N+1 select traps.
 * **Week-10-AOP-Production-Observability**: Aspect-Oriented Programming (AOP), pointcut expressions, advice types, aspect precedence ordering, and cross-cutting audit and performance telemetry.
+* **Week-11-Enterprise-Banking-Security-Perimeter**: Enterprise banking security architecture, custom AuthenticationProvider with business rules, DelegatingPasswordEncoder, CompromisedPasswordChecker, deferred CSRF token cookie pipeline, authentication event listeners, custom 401/403 handlers, and audit filter telemetry.
 
 ## Technical Environment
 
