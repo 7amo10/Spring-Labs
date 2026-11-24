@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: week-12-stateless-jwt-method-security-oauth2-resource-server
+  datasource:
+    url: jdbc:h2:mem:apexbank_jwt_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # In local/offline test mode, this can point to a mock JWKS or local JWK Set
+          jwk-set-uri: http://localhost:8080/realms/apexbank/protocol/openid-connect/certs
+
+server:
+  port: 8080
+  error:
+    include-message: always
+
+application:
+  security:
+    jwt:
+      secret: "ApexBankEnterpriseSecretKeyForStatelessJwtSecurityTesting2026SecureKey!"
+      expiration-ms: 7200000
+
+logging:
+  level:
+    com.spring.lab.security.jwt: DEBUG
+    org.springframework.security: INFO
